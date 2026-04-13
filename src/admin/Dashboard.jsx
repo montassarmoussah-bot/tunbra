@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { collection, getDocs, orderBy, query, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
-import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
+import { ComposableMap, Geographies, Geography, Marker } from '@vnedyalk0v/react19-simple-maps'
 import { Mail, MessageSquare, CheckCircle, Circle } from 'lucide-react'
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
