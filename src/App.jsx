@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import './App.css'
 import Loader          from './components/Loader'
+import DevSettings     from './components/DevSettings'
 import ScrollProgress  from './components/ScrollProgress'
 import Navigation      from './components/Navigation'
 import Footer          from './components/Footer'
@@ -29,6 +30,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Main site (rendered beneath, revealed when loader exits) */}
+      <DevSettings />
       <ScrollProgress />
       <Navigation />
       <main>
