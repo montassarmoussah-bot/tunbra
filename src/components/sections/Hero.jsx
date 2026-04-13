@@ -57,7 +57,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
             >
-              <div className="hero__badge" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <div className="hero__badge">
                 <span>{t('hero.badge.beforeFlag')}</span>
                 <img src="/flag.webp" alt="" className="hero__badge-flag" style={{ width: '22px', height: '16px', objectFit: 'cover', borderRadius: '2px' }} />
                 <span>{t('hero.badge.afterFlag')}</span>
