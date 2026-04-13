@@ -1,18 +1,16 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Messages collection - public can create, anyone can read (for admin dashboard)
     match /messages/{messageId} {
       allow create: if request.resource.data.keys().hasAll(['name', 'email', 'interest', 'message', 'timestamp']);
-      allow read: if true;  // Allow dashboard to read messages
-      allow update: if true; // Allow marking as read
+      allow read: if true;
+      allow update: if true;
       allow delete: if false;
     }
     
-    // Visits collection - public can create, anyone can read
     match /visits/{visitId} {
       allow create: if true;
-      allow read: if true;  // Allow dashboard to read visits
+      allow read: if true;
       allow update, delete: if false;
     }
   }
