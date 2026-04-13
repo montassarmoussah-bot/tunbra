@@ -54,11 +54,11 @@ export default function About() {
 
             <motion.div className="about__partner-logos" {...fadeUp(0.26)}>
               {[
-                { src: '/Coat_of_arms_of_Tunisia.svg', alt: 'Tunisie' },
-                { src: '/apii.jpg',                    alt: 'APII' },
-                { src: '/giz-logo.jpeg',               alt: 'GIZ' },
+                { src: '/4.png', alt: 'SDG 4 - Quality Education' },
+                { src: '/10.png', alt: 'SDG 10 - Reduced Inequalities' },
+                { src: '/17.png', alt: 'SDG 17 - Partnerships' },
               ].map(l => (
-                <div key={l.alt} className="about__partner-logo">
+                <div key={l.alt} className="about__partner-logo sdg-logo">
                   <img src={l.src} alt={l.alt} />
                 </div>
               ))}
