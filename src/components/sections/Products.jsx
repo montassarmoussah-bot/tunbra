@@ -29,7 +29,7 @@ const getProducts = (t) => [
     tagline: t('products.items.labeler.tagline'),
     desc:    t('products.items.labeler.desc'),
     image:   '/relife braille.png',
-    features: ['Conversion de documents en Braille', 'Interface simple et accessible', 'Compatible Windows', '100 % gratuit'],
+    features: t('products.items.labeler.features'),
     price:    t('products.items.labeler.price'),
     badge:    t('products.items.labeler.badge'),
     grad:     'linear-gradient(135deg,#04b8e0,#0692b8)',

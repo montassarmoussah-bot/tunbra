@@ -65,7 +65,7 @@ export const translations = {
       items: {
         printer: { title: 'TunBra Printer Pro', tagline: 'TunBra Braille Printer', desc: 'High-speed Braille embosser designed for institutions, libraries, and professional use. Fast, reliable, and built for Africa.', features: ['60 CPS', 'A4/A3 Paper', 'WiFi/USB'] },
         portable: { title: 'TunBra Lite', tagline: 'Portable Braille Printer', desc: 'Portable, battery-powered Braille embosser perfect for field work, schools, and individual use. Wherever you need Braille.', features: ['Battery 8h', 'Lightweight', 'Silent'] },
-        labeler: { title: 'Braille Labeler', tagline: 'TunBra Software', badge: 'TunBra Software', price: 'Free', desc: 'Create durable Braille labels for signage, products, and organization. Essential for accessibility compliance.', features: ['Durable', 'Multi-size', 'Easy'] },
+        labeler: { title: 'Braille Labeler', tagline: 'TunBra Software', badge: 'TunBra Software', price: 'Free', desc: 'Create durable Braille labels for signage, products, and organization. Essential for accessibility compliance.', features: ['Document to Braille conversion', 'Simple & accessible interface', 'Windows compatible', '100% free'] },
       },
       cta: 'View All Products',
       ribbon: 'Trusted by Leading Institutions',
@@ -222,7 +222,7 @@ export const translations = {
       items: {
         printer: { title: 'TunBra Printer Pro', tagline: 'TunBra Braille Printer', desc: 'Embosseuse Braille haute vitesse conçue pour les institutions, bibliothèques et usage professionnel. Rapide, fiable et conçue pour l\'Afrique.', features: ['60 CPS', 'Papier A4/A3', 'WiFi/USB'] },
         portable: { title: 'TunBra Lite', tagline: 'Imprimante Braille Portable', desc: 'Embosseuse Braille portable à batterie, parfaite pour le travail sur le terrain, les écoles et l\'usage individuel.', features: ['Batterie 8h', 'Légère', 'Silencieuse'] },
-        labeler: { title: 'Étiqueteuse Braille', tagline: 'Logiciel TunBra', badge: 'Logiciel TunBra', price: 'Gratuit', desc: 'Créez des étiquettes Braille durables pour la signalisation, les produits et l\'organisation.', features: ['Durable', 'Multi-taille', 'Facile'] },
+        labeler: { title: 'Étiqueteuse Braille', tagline: 'Logiciel TunBra', badge: 'Logiciel TunBra', price: 'Gratuit', desc: 'Créez des étiquettes Braille durables pour la signalisation, les produits et l\'organisation.', features: ['Conversion documents vers Braille', 'Interface simple & accessible', 'Compatible Windows', '100% gratuit'] },
       },
       cta: 'Voir Tous les Produits',
       ribbon: 'Reconnu par des Institutions de Premier Plan',
@@ -379,7 +379,7 @@ export const translations = {
       items: {
         printer: { title: 'TunBra Printer Pro', tagline: 'طابعة TunBra للبرايل', desc: 'طابعة بارزة للبرايل عالية السرعة مصممة للمؤسسات والمكتبات والاستخدام المهني. سريعة وموثوقة ومبنية لأفريقيا.', features: ['60 CPS', 'A4/A3', 'WiFi/USB'] },
         portable: { title: 'TunBra Lite', tagline: 'طابعة برايل محمولة', desc: 'طابعة بارزة للبرايل محمولة تعمل بالبطارية، مثالية للعمل الميداني والمدارس والاستخدام الفردي.', features: ['بطارية 8h', 'خفيفة', 'صامتة'] },
-        labeler: { title: 'ماكينة تسميات برايل', tagline: 'برنامج TunBra', badge: 'برنامج TunBra', price: 'مجاني', desc: 'أنشئ تسميات برايل متينة للإشارات والمنتجات والتنظيم. ضرورية للامتثال لإمكانية الوصول.', features: ['متينة', 'أحجام متعددة', 'سهلة'] },
+        labeler: { title: 'ماكينة تسميات برايل', tagline: 'برنامج TunBra', badge: 'برنامج TunBra', price: 'مجاني', desc: 'أنشئ تسميات برايل متينة للإشارات والمنتجات والتنظيم. ضرورية للامتثال لإمكانية الوصول.', features: ['تحويل المستندات إلى برايل', 'واجهة بسيطة وسهلة الوصول', 'متوافق مع Windows', 'مجاني 100%'] },
       },
       cta: 'عرض جميع المنتجات',
       ribbon: 'موثوق به من قبل المؤسسات الرائدة',

@@ -21,7 +21,6 @@ const getStats = (t) => [
   { num: '2024',    label: t('about.stats.founded') },
   { num: 'Tunisia', label: t('about.stats.hq') },
   { num: '3+',      label: t('about.stats.team') },
-  { num: 'ISO',     label: t('about.stats.certified') },
 ]
 
 export default function About() {

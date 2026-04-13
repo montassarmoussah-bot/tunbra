@@ -13,11 +13,10 @@ const reasons = [
   { Icon: MapPin,          title: 'Local Manufacturing',   desc: 'Made in Tunisia with regional support centers for faster service and lower shipping costs.',               stat: '24h',  statLabel: 'Support Response', bg: 'linear-gradient(135deg,#3b82f6,#06b6d4)' },
   { Icon: Lightbulb,       title: 'Innovative R&D',        desc: 'Continuous investment in research to bring cutting-edge accessibility technology to market.',              stat: '15%',  statLabel: 'R&D Investment',  bg: 'linear-gradient(135deg,#a855f7,#7c3aed)' },
   { Icon: Accessibility,   title: 'Accessibility Focused', desc: 'Built by accessibility experts for real-world needs, not just technical specifications.',                  stat: '100%', statLabel: 'User-Centered',   bg: 'linear-gradient(135deg,#f97316,#d97706)' },
-  { Icon: Award,           title: 'Premium Quality',       desc: 'ISO certified manufacturing with rigorous quality control and durability testing.',                        stat: 'ISO',  statLabel: 'Certified',       bg: 'linear-gradient(135deg,#3d54ea,#2934ae)' },
   { Icon: HeadphonesIcon,  title: 'After-Sales Support',   desc: 'Comprehensive warranty, training, and ongoing technical support for all products.',                       stat: '5yr',  statLabel: 'Warranty',        bg: 'linear-gradient(135deg,#04b8e0,#0692b8)' },
 ]
 
-const partners = ['Ministry of Education', 'UNESCO Partner', 'ISO Certified', 'Tunisia Export']
+const partners = ['Ministry of Education', 'UNESCO Partner', 'Tunisia Export']
 
 export default function WhyChooseUs() {
   return (
