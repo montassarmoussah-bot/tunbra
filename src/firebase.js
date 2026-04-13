@@ -1,18 +1,13 @@
-// ─────────────────────────────────────────────────────────────
-//  PASTE YOUR FIREBASE CONFIG HERE
-//  Go to Firebase Console → Project Settings → Your apps → SDK setup
-//  Copy the firebaseConfig object and replace below
-// ─────────────────────────────────────────────────────────────
 import { initializeApp } from 'firebase/app'
 import { getFirestore }  from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey:            "REPLACE_ME",
-  authDomain:        "REPLACE_ME",
-  projectId:         "REPLACE_ME",
-  storageBucket:     "REPLACE_ME",
-  messagingSenderId: "REPLACE_ME",
-  appId:             "REPLACE_ME",
+  apiKey:            "AIzaSyDXURq-SEtBLRUuZP_Qmka22WE6kDXlcms",
+  authDomain:        "tunbra-af4fa.firebaseapp.com",
+  projectId:         "tunbra-af4fa",
+  storageBucket:     "tunbra-af4fa.firebasestorage.app",
+  messagingSenderId: "895997639518",
+  appId:             "1:895997639518:web:5afd10b7e9cabf85aa2dcf",
 }
 
 const app = initializeApp(firebaseConfig)

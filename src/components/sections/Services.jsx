@@ -1,62 +1,73 @@
 import { motion } from 'framer-motion'
 import { FileText, GraduationCap, Building2, Tag, ArrowRight, Clock, Headphones } from 'lucide-react'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 22 },
+  initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.5, delay },
+  viewport: { once: true, margin: '-50px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
-const services = [
+const getServices = (t) => [
   {
     Icon: FileText,
-    title: 'Transcription Braille',
-    desc: 'Conversion de tout document en Braille avec précision et rapidité.',
-    tags: ['Tous formats', 'Braille grade 1 & 2', 'Notation scientifique'],
+    title: t('services.items.transcription.title'),
+    desc: t('services.items.transcription.desc'),
+    tags: t('services.items.transcription.tags'),
     bg: '#3b82f6',
   },
   {
     Icon: GraduationCap,
-    title: 'Impression éducative',
-    desc: 'Impression Braille spécialisée pour manuels, examens et supports pédagogiques.',
-    tags: ['Manuels scolaires', 'Copies d\'examen', 'Volume'],
+    title: t('services.items.education.title'),
+    desc: t('services.items.education.desc'),
+    tags: t('services.items.education.tags'),
     bg: '#22c55e',
   },
   {
     Icon: Building2,
-    title: 'Solutions institutionnelles',
-    desc: 'Solutions entreprises pour gouvernements, ONG et accessibilité corporate.',
-    tags: ['Traitement en masse', 'API', 'Support dédié'],
+    title: t('services.items.institutional.title'),
+    desc: t('services.items.institutional.desc'),
+    tags: t('services.items.institutional.tags'),
     bg: '#a855f7',
   },
   {
     Icon: Tag,
-    title: 'Étiquettes Braille',
-    desc: 'Étiquettes Braille durables pour produits, signalisation et locaux.',
-    tags: ['Résistant', 'Multi-tailles', 'Livraison rapide'],
+    title: t('services.items.labels.title'),
+    desc: t('services.items.labels.desc'),
+    tags: t('services.items.labels.tags'),
     bg: '#f97316',
   },
 ]
 
-const perks = [
-  { Icon: Clock,      title: 'Livraison rapide',  desc: 'Standard 48–72h' },
-  { Icon: Headphones, title: 'Support expert',     desc: 'Chefs de projet dédiés' },
+const getPerks = (t) => [
+  { Icon: Clock,      title: t('services.perks.fast.title'),  desc: t('services.perks.fast.desc') },
+  { Icon: Headphones, title: t('services.perks.expert.title'),  desc: t('services.perks.expert.desc') },
 ]
 
 export default function Services() {
+  const { t } = useLanguage()
+  const services = getServices(t)
+  const perks = getPerks(t)
+
   return (
     <section id="services" className="services">
       <div className="wrap">
         <div className="sec-head">
           <motion.div {...fadeUp(0)}>
-            <span className="pill pill--acc">Services Braille</span>
+            <span className="pill pill--acc">{t('services.badge')}</span>
           </motion.div>
           <motion.h2 {...fadeUp(0.08)}>
-            Services d'<span className="grad-text">Impression Braille</span>
+            {(() => {
+              const title = t('services.title')
+              const highlight = t('services.highlight')
+              const parts = title.split(highlight)
+              if (parts.length === 1) return <>{title} <span className="grad-text">{highlight}</span></>
+              return <>{parts[0]}<span className="grad-text">{highlight}</span>{parts[1] || ''}</>
+            })()}
           </motion.h2>
           <motion.p {...fadeUp(0.15)}>
-            Du document unique aux projets institutionnels — des matériaux Braille précis, livrés à temps.
+            {t('services.subtitle')}
           </motion.p>
         </div>
 
@@ -70,7 +81,7 @@ export default function Services() {
                 <h4>{s.title}</h4>
                 <p>{s.desc}</p>
                 <div className="svc-card__tags">
-                  {s.tags.map(t => <span key={t} className="svc-card__tag">{t}</span>)}
+                  {s.tags.map(tag => <span key={tag} className="svc-card__tag">{tag}</span>)}
                 </div>
               </div>
             </motion.div>
@@ -91,9 +102,9 @@ export default function Services() {
 
         <motion.div className="services__cta" {...fadeUp(0.5)}>
           <button className="btn btn-acc btn-lg">
-            Demander un devis <ArrowRight size={18} />
+            {t('services.cta')} <ArrowRight size={18} />
           </button>
-          <p>Devis gratuit sous 24h · Sans engagement</p>
+          <p>{t('services.note')}</p>
         </motion.div>
       </div>
     </section>

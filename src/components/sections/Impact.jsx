@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion'
 import { FileText, School, Users, Globe } from 'lucide-react'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 16 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.52, delay },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
 function Counter({ end, suffix = '', duration = 2 }) {

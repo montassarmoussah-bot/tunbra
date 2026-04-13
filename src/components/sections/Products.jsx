@@ -1,27 +1,23 @@
 import { motion } from 'framer-motion'
 import { Check, ArrowRight, Zap } from 'lucide-react'
 import { useState } from 'react'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.52, delay },
+  viewport: { once: true, margin: '-50px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
-const products = [
+const getProducts = (t) => [
   {
     id: 1,
     name:    'TunBra Braille Printer',
-    tagline: 'Imprimante Braille Compacte',
-    desc:    'Imprimante Braille compacte conçue pour convertir vos documents numériques en braille tactile — idéale pour les écoles, universités et particuliers.',
+    tagline: t('products.items.printer.tagline'),
+    desc:    t('products.items.printer.desc'),
     image:   '/withoutBG1.png',
-    features: [
-      'Format papier A4 (120–200 g/m²)',
-      'Connexion USB Type B',
-      'Ajustement automatique du papier',
-      'Alimentation 220V — simple et fiable',
-    ],
+    features: t('products.items.printer.features'),
     price:    null,
     badge:    'Best Seller',
     grad:     'linear-gradient(135deg,#3d54ea,#2934ae)',
@@ -30,17 +26,12 @@ const products = [
   {
     id: 2,
     name:    'Logiciel TunBra',
-    tagline: 'Logiciel de Conversion Braille Gratuit',
-    desc:    "Convertissez n'importe quel document texte en braille en quelques clics. Logiciel intuitif fourni avec l'imprimante, disponible gratuitement.",
+    tagline: t('products.items.labeler.tagline'),
+    desc:    t('products.items.labeler.desc'),
     image:   '/relife braille.png',
-    features: [
-      'Conversion de documents en Braille',
-      'Interface simple et accessible',
-      'Compatible Windows',
-      '100 % gratuit',
-    ],
-    price:    'Gratuit',
-    badge:    'Gratuit',
+    features: ['Conversion de documents en Braille', 'Interface simple et accessible', 'Compatible Windows', '100 % gratuit'],
+    price:    t('products.items.labeler.price'),
+    badge:    t('products.items.labeler.badge'),
     grad:     'linear-gradient(135deg,#04b8e0,#0692b8)',
     badgeBg:  '#04b8e0',
   },
@@ -60,7 +51,9 @@ const logos = [
 const RIBBON = { speed: 18, logoH: 100, gap: 52 }
 
 export default function Products() {
+  const { t } = useLanguage()
   const [ribbon] = useState(RIBBON)
+  const products = getProducts(t)
 
   return (
     <section id="products" className="products">
@@ -69,14 +62,19 @@ export default function Products() {
           {/* Header */}
           <div className="sec-head">
             <motion.div {...fadeUp(0)}>
-              <span className="pill pill--pri">Nos Produits</span>
+              <span className="pill pill--pri">{t('products.badge')}</span>
             </motion.div>
             <motion.h2 {...fadeUp(0.08)}>
-              Solutions Braille <span className="grad-text">Innovantes</span>
+              {(() => {
+                const title = t('products.title')
+                const highlight = t('products.highlight')
+                const parts = title.split(highlight)
+                if (parts.length === 1) return <>{title} <span className="grad-text">{highlight}</span></>
+                return <>{parts[0]}<span className="grad-text">{highlight}</span>{parts[1] || ''}</>
+              })()}
             </motion.h2>
             <motion.p {...fadeUp(0.15)}>
-              Des imprimantes institutionnelles aux appareils portables personnels — nos produits
-              allient technologie de pointe et qualité irréprochable.
+              {t('products.subtitle')}
             </motion.p>
           </div>
 
@@ -108,9 +106,9 @@ export default function Products() {
                   </ul>
                   <div className="prod-card__foot">
                     <div>
-                      {p.price && (<><div className="prod-card__price-lbl">Prix</div><div className="prod-card__price">{p.price}</div></>)}
+                      {p.price && (<><div className="prod-card__price-lbl">{t('products.price')}</div><div className="prod-card__price">{p.price}</div></>)}
                     </div>
-                    <button className="btn btn-pri btn-sm">En savoir plus <ArrowRight size={15} /></button>
+                    <button className="btn btn-pri btn-sm">{t('products.learnMore')} <ArrowRight size={15} /></button>
                   </div>
                 </div>
               </motion.div>
@@ -120,12 +118,12 @@ export default function Products() {
           {/* Banner */}
           <motion.div className="products__banner" {...fadeUp(0.45)}>
             <div>
-              <h3>Besoin d'une solution Braille sur mesure ?</h3>
-              <p>Nous collaborons avec les institutions pour développer des solutions d'impression Braille adaptées.</p>
+              <h3>{t('products.banner.title')}</h3>
+              <p>{t('products.banner.desc')}</p>
             </div>
             <a href="#contact" className="btn btn-acc btn-lg"
               onClick={e => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
-              <Zap size={18} /> Contacter notre équipe
+              <Zap size={18} /> {t('products.banner.cta')}
             </a>
           </motion.div>
 
@@ -133,7 +131,7 @@ export default function Products() {
 
         {/* ── Full-width logo ribbon ── */}
         <div className="ribbon">
-          <p className="ribbon__label">Ils nous font confiance</p>
+          <p className="ribbon__label">{t('products.ribbon')}</p>
           <div className="ribbon__mask">
             {/* Two copies for seamless loop */}
             <div

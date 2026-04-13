@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
+import LanguageSelector from './LanguageSelector'
 
-const links = [
-  { label: 'À propos',  href: '#about' },
-  { label: 'Produits',  href: '#products' },
-  { label: 'Services',  href: '#services' },
-  { label: 'Impact',    href: '#impact' },
-  { label: 'Guides',    href: '#guides' },
-  { label: 'Contact',   href: '#contact' },
+const getLinks = (t) => [
+  { label: t('nav.about'),  href: '#about' },
+  { label: t('nav.products'),  href: '#products' },
+  { label: t('nav.services'),  href: '#services' },
+  { label: t('nav.impact'),    href: '#impact' },
+  { label: t('nav.guides'),    href: '#guides' },
+  { label: t('nav.contact'),   href: '#contact' },
 ]
 
 export default function Navigation() {
+  const { t, isRTL } = useLanguage()
+  const links = getLinks(t)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen]         = useState(false)
 
@@ -64,25 +68,26 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="nav__cta">
+            {/* Language + CTA */}
+            <div className="nav__cta" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <LanguageSelector />
               <a
                 href="#contact"
                 onClick={e => go(e, '#contact')}
                 className="btn btn-sm btn-ghost"
               >
-                Nous contacter
+                {t('nav.cta')}
               </a>
             </div>
 
             {/* Hamburger */}
             <button
               className="nav__burger"
-              style={{ color: scrolled ? 'var(--text)' : '#fff' }}
+              style={{ color: '#fff' }}
               onClick={() => setOpen(o => !o)}
               aria-label="Toggle menu"
             >
-              {open ? <X size={22} /> : <Menu size={22} />}
+              {open ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
@@ -98,14 +103,13 @@ export default function Navigation() {
             transition={{ duration: 0.2 }}
             className="nav__drawer"
           >
-            <img src="/logo_TunBra_png.png" alt="TunBra" style={{ height: 36, marginBottom: '1rem' }} />
             {links.map(l => (
               <a key={l.href} href={l.href} onClick={e => go(e, l.href)} className="nav__link">
                 {l.label}
               </a>
             ))}
             <a href="#contact" onClick={e => go(e, '#contact')} className="btn btn-pri btn-lg">
-              Nous contacter
+              {t('nav.cta')}
             </a>
           </motion.div>
         )}

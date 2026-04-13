@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.48, delay },
+  viewport: { once: true, margin: '-50px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
 const partners = [

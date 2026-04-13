@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Play, Sparkles } from 'lucide-react'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 const go = (e, href) => {
   e.preventDefault()
@@ -11,16 +12,12 @@ const videoBlock = (
     className="hero__visual"
     initial={{ opacity: 0, scale: 0.88, y: 20 }}
     animate={{ opacity: 1, scale: 1,    y: 0 }}
-    transition={{ duration: 0.7, delay: 0.15 }}
+    transition={{ duration: 0.4, delay: 0.08 }}
   >
     <div className="hero__frame">
-      <span className="hero__corner hero__corner--tl" aria-hidden />
-      <span className="hero__corner hero__corner--tr" aria-hidden />
-      <span className="hero__corner hero__corner--bl" aria-hidden />
-      <span className="hero__corner hero__corner--br" aria-hidden />
       <div className="hero__video-wrap">
         <div className="hero__scan" aria-hidden />
-        <video src="/video.mp4" autoPlay muted loop playsInline className="hero__video" />
+        <video src="/video.mp4" autoPlay muted loop playsInline className="hero__video" data-always-play="true" />
         <div className="hero__video-glow" aria-hidden />
       </div>
     </div>
@@ -28,6 +25,7 @@ const videoBlock = (
 )
 
 export default function Hero() {
+  const { t } = useLanguage()
   return (
     <section className="hero">
       <div className="hero__orb hero__orb--1" />
@@ -60,9 +58,10 @@ export default function Hero() {
               transition={{ duration: 0.55 }}
             >
               <div className="hero__badge">
-                <span className="hero__badge-dot" />
-                <Sparkles size={13} />
-                Pionnier de l'innovation Braille en Afrique
+                Made in
+                <img src="/flag.webp" alt="Tunisia flag" className="hero__badge-flag" />
+                Tunisia with love
+                <img src="/heart.png" alt="heart" className="hero__badge-heart" />
               </div>
             </motion.div>
 
@@ -70,18 +69,27 @@ export default function Hero() {
               className="hero__title"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.1 }}
+              transition={{ duration: 0.25, delay: 0.04 }}
             >
-              L'<span className="hl">accessibilité</span> Braille, réinventée.
+              {(() => {
+                const title = t('hero.title')
+                const highlight = t('hero.highlight')
+                const parts = title.split(highlight)
+                if (parts.length === 1) {
+                  // Highlight not in title, show title + space + highlight
+                  return <>{title} <span className="hl">{highlight}</span></>
+                }
+                return <>{parts[0]}<span className="hl">{highlight}</span>{parts[1] || ''}</>
+              })()}
             </motion.h1>
 
             <motion.p
               className="hero__sub"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
+              transition={{ duration: 0.25, delay: 0.1 }}
             >
-              Imprimantes Braille intelligentes pour les écoles, institutions et entreprises — fabriquées en Tunisie.
+              {t('hero.subtitle')}
             </motion.p>
           </div>
 
@@ -94,13 +102,13 @@ export default function Hero() {
               className="hero__ctas"
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.26 }}
+              transition={{ duration: 0.25, delay: 0.18 }}
             >
               <a href="#products" onClick={e => go(e, '#products')} className="btn btn-acc btn-lg">
-                Découvrir nos produits <ArrowRight size={18} />
+                {t('hero.ctaPrimary')} <ArrowRight size={18} />
               </a>
               <a href="#contact" onClick={e => go(e, '#contact')} className="btn btn-ghost btn-lg">
-                <Play size={17} /> Demander une démo
+                <Play size={17} /> {t('hero.ctaSecondary')}
               </a>
             </motion.div>
 
@@ -110,10 +118,10 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.55, delay: 0.42 }}
             >
-              {['Certifié ISO', 'Fabriqué en Tunisie', 'Support 24/7'].map(t => (
-                <div key={t} className="hero__trust-item">
+              {[t('hero.stats.countries'), t('hero.stats.devices'), t('hero.stats.support')].map(s => (
+                <div key={s} className="hero__trust-item">
                   <span className="hero__trust-dot" />
-                  {t}
+                  {s}
                 </div>
               ))}
             </motion.div>

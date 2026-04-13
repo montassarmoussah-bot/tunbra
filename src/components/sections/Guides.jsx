@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, BookOpen } from 'lucide-react'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 22 },
+  initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.5, delay },
+  viewport: { once: true, margin: '-50px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
-const guides = [
+const getGuides = (t) => [
   {
-    lang:    '🇫🇷 Français',
-    title:   'Guide d\'utilisation TunBra',
-    desc:    'Manuel complet en français — installation, configuration et utilisation de votre imprimante TunBra.',
+    lang:    '🇫🇷 ' + t('guides.items.french.lang'),
+    title:   t('guides.items.french.title'),
+    desc:    t('guides.items.french.desc'),
     href:    '/TunBra_Guide_FR (2).pdf',
     bg:      'linear-gradient(135deg,#1e3a8a,#3d54ea)',
     accent:  '#7e9bfa',
   },
   {
-    lang:    '🇹🇳 عربي',
-    title:   'دليل مستخدم TunBra',
-    desc:    'دليل المستخدم الشامل باللغة العربية — التركيب والإعداد واستخدام طابعة TunBra.',
+    lang:    '🇹🇳 ' + t('guides.items.arabic.lang'),
+    title:   t('guides.items.arabic.title'),
+    desc:    t('guides.items.arabic.desc'),
     href:    '/tunbra_user_manual_ar (2).pdf',
     bg:      'linear-gradient(135deg,#083345,#04b8e0)',
     accent:  '#5fe3fb',
@@ -28,6 +29,9 @@ const guides = [
 ]
 
 export default function Guides() {
+  const { t } = useLanguage()
+  const guides = getGuides(t)
+
   return (
     <section id="guides" className="guides">
       <div className="wrap">
@@ -35,15 +39,20 @@ export default function Guides() {
         <div className="sec-head">
           <motion.div {...fadeUp(0)}>
             <span className="pill pill--white">
-              <BookOpen size={13} /> Documentation
+              <BookOpen size={13} /> {t('guides.badge')}
             </span>
           </motion.div>
           <motion.h2 {...fadeUp(0.08)}>
-            Téléchargez nos <span className="grad-text">Guides d'utilisation</span>
+            {(() => {
+              const title = t('guides.title')
+              const highlight = t('guides.highlight')
+              const parts = title.split(highlight)
+              if (parts.length === 1) return <>{title} <span className="grad-text">{highlight}</span></>
+              return <>{parts[0]}<span className="grad-text">{highlight}</span>{parts[1] || ''}</>
+            })()}
           </motion.h2>
           <motion.p {...fadeUp(0.15)}>
-            Guides complets pour vous aider à tirer le meilleur parti de votre imprimante TunBra,
-            disponibles en français et en arabe.
+            {t('guides.subtitle')}
           </motion.p>
         </div>
 
@@ -90,7 +99,7 @@ export default function Guides() {
             color: 'rgba(255,255,255,.3)',
           }}
         >
-          Les fichiers PDF s'ouvrent dans un nouvel onglet · Format PDF · Gratuit
+          PDF · {t('guides.note')}
         </motion.p>
       </div>
     </section>

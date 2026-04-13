@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import { DollarSign, MapPin, Lightbulb, Accessibility, Award, HeadphonesIcon } from 'lucide-react'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 22 },
+  initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.5, delay },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.35, delay: delay * 0.6 },
 })
 
 const reasons = [
