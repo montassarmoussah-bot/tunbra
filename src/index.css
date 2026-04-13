@@ -1536,7 +1536,7 @@ section { position: relative; }
 }
 
 .loader__logo img {
-  height: 42px;
+  height: 168px;
   filter: invert(1) brightness(2);
   opacity: .9;
 }
