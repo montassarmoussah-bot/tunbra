@@ -57,7 +57,7 @@ export default function Navigation() {
                   href={l.href}
                   onClick={e => go(e, l.href)}
                   className="nav__link"
-                  style={{ color: scrolled ? 'var(--g600)' : 'rgba(255,255,255,.78)' }}
+                  style={{ color: 'rgba(255,255,255,.82)' }}
                 >
                   {l.label}
                 </a>
@@ -69,7 +69,7 @@ export default function Navigation() {
               <a
                 href="#contact"
                 onClick={e => go(e, '#contact')}
-                className={`btn btn-sm ${scrolled ? 'btn-pri' : 'btn-ghost'}`}
+                className="btn btn-sm btn-ghost"
               >
                 Nous contacter
               </a>

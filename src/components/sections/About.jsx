@@ -17,9 +17,9 @@ const values = [
 ]
 
 const stats = [
-  { num: '2019',    label: 'Founded' },
+  { num: '2024',    label: 'Founded' },
   { num: 'Tunisia', label: 'Headquarters' },
-  { num: '50+',     label: 'Team Members' },
+  { num: '3+',      label: 'Team Members' },
   { num: 'ISO',     label: 'Certified' },
 ]
 
@@ -52,17 +52,14 @@ export default function About() {
               while remaining accessible to local markets.
             </motion.p>
 
-            <motion.div className="about__tags" {...fadeUp(0.26)}>
+            <motion.div className="about__partner-logos" {...fadeUp(0.26)}>
               {[
-                { label: 'Mission-Driven',      bg: '#eef4ff', iconBg: '#dbeafe', color: '#3d54ea' },
-                { label: 'Innovation Focused',  bg: '#ecfdff', iconBg: '#cffafe', color: '#0692b8' },
-                { label: 'Social Impact',       bg: '#dcfce7', iconBg: '#bbf7d0', color: '#16a34a' },
-              ].map(t => (
-                <div key={t.label} className="about__tag" style={{ background: t.bg }}>
-                  <div className="about__tag-ico" style={{ background: t.iconBg }}>
-                    <Heart size={14} style={{ color: t.color }} />
-                  </div>
-                  {t.label}
+                { src: '/Coat_of_arms_of_Tunisia.svg', alt: 'Tunisie' },
+                { src: '/apii.jpg',                    alt: 'APII' },
+                { src: '/giz-logo.jpeg',               alt: 'GIZ' },
+              ].map(l => (
+                <div key={l.alt} className="about__partner-logo">
+                  <img src={l.src} alt={l.alt} />
                 </div>
               ))}
             </motion.div>

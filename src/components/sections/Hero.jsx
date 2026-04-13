@@ -6,14 +6,33 @@ const go = (e, href) => {
   document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
 }
 
+const videoBlock = (
+  <motion.div
+    className="hero__visual"
+    initial={{ opacity: 0, scale: 0.88, y: 20 }}
+    animate={{ opacity: 1, scale: 1,    y: 0 }}
+    transition={{ duration: 0.7, delay: 0.15 }}
+  >
+    <div className="hero__frame">
+      <span className="hero__corner hero__corner--tl" aria-hidden />
+      <span className="hero__corner hero__corner--tr" aria-hidden />
+      <span className="hero__corner hero__corner--bl" aria-hidden />
+      <span className="hero__corner hero__corner--br" aria-hidden />
+      <div className="hero__video-wrap">
+        <div className="hero__scan" aria-hidden />
+        <video src="/video.mp4" autoPlay muted loop playsInline className="hero__video" />
+        <div className="hero__video-glow" aria-hidden />
+      </div>
+    </div>
+  </motion.div>
+)
+
 export default function Hero() {
   return (
     <section className="hero">
-      {/* Background orbs */}
       <div className="hero__orb hero__orb--1" />
       <div className="hero__orb hero__orb--2" />
 
-      {/* Braille dot pattern */}
       <div className="hero__dots" aria-hidden>
         <svg width="100%" height="100%">
           <defs>
@@ -33,8 +52,8 @@ export default function Hero() {
       <div className="wrap">
         <div className="hero__inner">
 
-          {/* ── Text ── */}
-          <div style={{ order: 1 }}>
+          {/* ── Text top: badge + title + subtitle ── */}
+          <div className="hero__text-top">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -64,7 +83,13 @@ export default function Hero() {
             >
               Imprimantes Braille intelligentes pour les écoles, institutions et entreprises — fabriquées en Tunisie.
             </motion.p>
+          </div>
 
+          {/* ── Video (mobile: between subtitle and CTAs; desktop: right column) ── */}
+          {videoBlock}
+
+          {/* ── Text bottom: CTAs + trust ── */}
+          <div className="hero__text-bottom">
             <motion.div
               className="hero__ctas"
               initial={{ opacity: 0, y: 28 }}
@@ -94,42 +119,9 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Video ── */}
-          <motion.div
-            className="hero__visual"
-            style={{ order: 2 }}
-            initial={{ opacity: 0, scale: 0.88, y: 20 }}
-            animate={{ opacity: 1, scale: 1,    y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-          >
-            {/* Decorative frame */}
-            <div className="hero__frame">
-              {/* Corner brackets */}
-              <span className="hero__corner hero__corner--tl" aria-hidden />
-              <span className="hero__corner hero__corner--tr" aria-hidden />
-              <span className="hero__corner hero__corner--bl" aria-hidden />
-              <span className="hero__corner hero__corner--br" aria-hidden />
-
-              <div className="hero__video-wrap">
-                {/* Animated scan line */}
-                <div className="hero__scan" aria-hidden />
-                <video
-                  src="/video.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="hero__video"
-                />
-                <div className="hero__video-glow" aria-hidden />
-              </div>
-            </div>
-          </motion.div>
-
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="hero__scroll" aria-hidden>
         <div className="hero__scroll-wheel">
           <div className="hero__scroll-dot" />

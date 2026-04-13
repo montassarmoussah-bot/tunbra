@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#" className="footer__logo" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-              <img src="/whitelogo.png" alt="TunBra" style={{ height: 60 }} />
+              <img src="/whitelogo.png" alt="TunBra" style={{ height: 'var(--footer-logo-h, 60px)' }} />
             </a>
             <p className="footer__brand-desc">
               Pionnier de l'innovation accessible en Afrique. Des solutions Braille qui autonomisent
