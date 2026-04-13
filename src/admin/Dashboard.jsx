@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { collection, getDocs, orderBy, query, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
+import { Mail, MessageSquare, CheckCircle, Circle } from 'lucide-react'
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
 const COLORS   = ['#3d54ea', '#04b8e0', '#22c55e', '#f59e0b', '#a855f7', '#ef4444', '#f97316', '#14b8a6']
@@ -11,6 +12,7 @@ const COLORS   = ['#3d54ea', '#04b8e0', '#22c55e', '#f59e0b', '#a855f7', '#ef444
 export default function Dashboard() {
   const nav               = useNavigate()
   const [visits, setVisits] = useState([])
+  const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true)
 
   // Auth guard
@@ -22,8 +24,12 @@ export default function Dashboard() {
   useEffect(() => {
     const load = async () => {
       try {
-        const snap = await getDocs(query(collection(db, 'visits'), orderBy('timestamp', 'desc')))
-        setVisits(snap.docs.map(d => ({ id: d.id, ...d.data() })))
+        const [visitsSnap, messagesSnap] = await Promise.all([
+          getDocs(query(collection(db, 'visits'), orderBy('timestamp', 'desc'))),
+          getDocs(query(collection(db, 'messages'), orderBy('timestamp', 'desc')))
+        ])
+        setVisits(visitsSnap.docs.map(d => ({ id: d.id, ...d.data() })))
+        setMessages(messagesSnap.docs.map(d => ({ id: d.id, ...d.data() })))
       } catch (e) {
         console.error('Firestore error:', e)
       } finally {
@@ -32,6 +38,15 @@ export default function Dashboard() {
     }
     load()
   }, [])
+
+  const markAsRead = async (id) => {
+    try {
+      await updateDoc(doc(db, 'messages', id), { read: true })
+      setMessages(prev => prev.map(m => m.id === id ? { ...m, read: true } : m))
+    } catch (e) {
+      console.error('Error marking as read:', e)
+    }
+  }
 
   const logout = () => { sessionStorage.removeItem('admin_auth'); nav('/monta') }
 
@@ -140,7 +155,48 @@ export default function Dashboard() {
         </ComposableMap>
       </div>
 
-      {/* Section 3: Recent Visits Table */}
+      {/* Section 3: Messages Table */}
+      <div style={s.messagesCard}>
+        <div style={s.messagesHeader}>
+          <h3 style={{ ...s.cardTitle, margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <MessageSquare size={18} />
+            Contact Messages
+            {messages.filter(m => !m.read).length > 0 && (
+              <span style={s.unreadBadge}>{messages.filter(m => !m.read).length} new</span>
+            )}
+          </h3>
+        </div>
+        {messages.length === 0 ? (
+          <p style={{ color: '#64748b', textAlign: 'center', padding: '2rem' }}>No messages yet</p>
+        ) : (
+          <div style={s.messagesList}>
+            {messages.map(m => (
+              <div key={m.id} style={{ ...s.messageItem, background: m.read ? '#1e293b' : '#162032', borderLeft: m.read ? '3px solid #334155' : '3px solid #3d54ea' }}>
+                <div style={s.messageHeader}>
+                  <div style={s.messageInfo}>
+                    <span style={s.messageName}>{m.name}</span>
+                    <span style={s.messageMeta}>{m.email}</span>
+                    {m.org && <span style={s.messageMeta}>• {m.org}</span>}
+                    <span style={{ ...s.messageMeta, background: '#334155', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem' }}>{m.interest}</span>
+                  </div>
+                  <div style={s.messageActions}>
+                    <span style={s.messageTime}>{m.timestamp?.toDate?.().toLocaleString() || '—'}</span>
+                    {!m.read && (
+                      <button onClick={() => markAsRead(m.id)} style={s.markReadBtn} title="Mark as read">
+                        <Circle size={16} />
+                      </button>
+                    )}
+                    {m.read && <CheckCircle size={16} color="#22c55e" />}
+                  </div>
+                </div>
+                <p style={s.messageText}>{m.message}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Section 4: Recent Visits Table */}
       <div style={s.tableCard}>
         <h3 style={s.cardTitle}>Recent Visits</h3>
         <table style={s.table}>
@@ -224,6 +280,21 @@ const s = {
   // Map Section
   mapCard:    { background:'#1e293b', borderRadius:12, padding:'1.25rem 1.5rem', border:'1px solid #334155', marginBottom:'1.5rem' },
   cardTitle:  { fontSize:'1rem', fontWeight:600, marginBottom:'1rem', color:'#cbd5e1' },
+
+  // Messages Section
+  messagesCard: { background:'#1e293b', borderRadius:12, padding:'1.25rem 1.5rem', border:'1px solid #334155', marginBottom:'1.5rem' },
+  messagesHeader: { display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1rem' },
+  unreadBadge: { background:'#3d54ea', color:'#fff', padding:'2px 10px', borderRadius:'999px', fontSize:'0.8rem', fontWeight:600 },
+  messagesList: { display:'flex', flexDirection:'column', gap:'0.75rem', maxHeight:'500px', overflowY:'auto' },
+  messageItem: { background:'#1e293b', borderRadius:8, padding:'1rem', border:'1px solid #334155' },
+  messageHeader: { display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.75rem' },
+  messageInfo: { display:'flex', alignItems:'center', gap:'0.5rem', flexWrap:'wrap' },
+  messageName: { fontWeight:600, color:'#f1f5f9', fontSize:'0.95rem' },
+  messageMeta: { color:'#64748b', fontSize:'0.8rem' },
+  messageActions: { display:'flex', alignItems:'center', gap:'0.5rem' },
+  messageTime: { color:'#64748b', fontSize:'0.75rem' },
+  messageText: { color:'#cbd5e1', fontSize:'0.9rem', lineHeight:1.5, margin:0 },
+  markReadBtn: { background:'none', border:'none', color:'#64748b', cursor:'pointer', padding:'4px', display:'flex', alignItems:'center', justifyContent:'center' },
   
   // Table Section
   tableCard:  { background:'#1e293b', borderRadius:12, padding:'1.25rem 1.5rem', border:'1px solid #334155', overflowX:'auto' },

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react'
 import { useLanguage } from '../../i18n/LanguageContext'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../../firebase'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 14 },
@@ -24,10 +26,25 @@ export default function Contact() {
   const [form, setForm]       = useState({ name: '', email: '', org: '', interest: '', message: '' })
 
   const onChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const onSubmit = e => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 6000)
+    try {
+      await addDoc(collection(db, 'messages'), {
+        name: form.name,
+        email: form.email,
+        org: form.org,
+        interest: form.interest,
+        message: form.message,
+        timestamp: serverTimestamp(),
+        read: false
+      })
+      setSent(true)
+      setForm({ name: '', email: '', org: '', interest: '', message: '' })
+      setTimeout(() => setSent(false), 6000)
+    } catch (err) {
+      console.error('Error sending message:', err)
+      alert('Failed to send message. Please try again.')
+    }
   }
 
   return (
