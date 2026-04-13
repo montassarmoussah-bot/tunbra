@@ -101,9 +101,9 @@ export default function Services() {
         </motion.div>
 
         <motion.div className="services__cta" {...fadeUp(0.5)}>
-          <button className="btn btn-acc btn-lg">
+          <a href="#contact" className="btn btn-acc btn-lg" onClick={e => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
             {t('services.cta')} <ArrowRight size={18} />
-          </button>
+          </a>
           <p>{t('services.note')}</p>
         </motion.div>
       </div>

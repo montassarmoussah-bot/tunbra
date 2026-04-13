@@ -36,13 +36,13 @@ const partners = [
     name:    'Fondation Tunisie pour le Développement',
     short:   'ELIFE',
     bg:      'linear-gradient(135deg,#7c3aed,#a855f7)',
-    href:    '#',
+    href:    null,
   },
   {
     name:    'CITESS',
     short:   'CITESS',
     bg:      'linear-gradient(135deg,#d97706,#f59e0b)',
-    href:    '#',
+    href:    null,
   },
 ]
 
@@ -61,23 +61,38 @@ export default function Partners() {
         </motion.div>
 
         <div className="partners__grid">
-          {partners.map((p, i) => (
-            <motion.a
-              key={p.name}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="partner-card"
-              {...fadeUp(0.1 + i * 0.07)}
-            >
-              <div className="partner-card__badge" style={{ background: p.bg }}>
-                {p.short.split('\n').map((line, j) => (
-                  <span key={j} style={{ display: 'block', lineHeight: 1.2 }}>{line}</span>
-                ))}
-              </div>
-              <div className="partner-card__name">{p.name}</div>
-            </motion.a>
-          ))}
+          {partners.map((p, i) => {
+            const cardContent = (
+              <>
+                <div className="partner-card__badge" style={{ background: p.bg }}>
+                  {p.short.split('\n').map((line, j) => (
+                    <span key={j} style={{ display: 'block', lineHeight: 1.2 }}>{line}</span>
+                  ))}
+                </div>
+                <div className="partner-card__name">{p.name}</div>
+              </>
+            )
+            return p.href ? (
+              <motion.a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="partner-card"
+                {...fadeUp(0.1 + i * 0.07)}
+              >
+                {cardContent}
+              </motion.a>
+            ) : (
+              <motion.div
+                key={p.name}
+                className="partner-card"
+                {...fadeUp(0.1 + i * 0.07)}
+              >
+                {cardContent}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

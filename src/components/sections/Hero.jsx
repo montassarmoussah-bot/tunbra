@@ -107,7 +107,7 @@ export default function Hero() {
               <a href="#products" onClick={e => go(e, '#products')} className="btn btn-acc btn-lg">
                 {t('hero.ctaPrimary')} <ArrowRight size={18} />
               </a>
-              <a href="#contact" onClick={e => go(e, '#contact')} className="btn btn-ghost btn-lg">
+              <a href="#services" onClick={e => go(e, '#services')} className="btn btn-ghost btn-lg">
                 <Play size={17} /> {t('hero.ctaSecondary')}
               </a>
             </motion.div>

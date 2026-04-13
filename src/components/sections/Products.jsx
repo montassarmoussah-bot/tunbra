@@ -108,7 +108,7 @@ export default function Products() {
                     <div>
                       {p.price && (<><div className="prod-card__price-lbl">{t('products.price')}</div><div className="prod-card__price">{p.price}</div></>)}
                     </div>
-                    <button className="btn btn-pri btn-sm">{t('products.learnMore')} <ArrowRight size={15} /></button>
+                    <a href="#contact" className="btn btn-pri btn-sm" onClick={e => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}>{t('products.learnMore')} <ArrowRight size={15} /></a>
                   </div>
                 </div>
               </motion.div>

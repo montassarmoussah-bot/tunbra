@@ -13,7 +13,7 @@ const fadeUp = (delay = 0) => ({
 const getContactInfo = (t) => [
   { Icon: Mail,   label: t('contact.info.email'),   value: 'contact@tunbra.com',          href: 'mailto:contact@tunbra.com' },
   { Icon: Phone,  label: t('contact.info.phone'),   value: '+216 24 909 710',                 href: 'tel:+21624909710' },
-  { Icon: MapPin, label: t('contact.info.address'), value: 'Pépinière Mahdia Hiboun, 5111, B3, Tunisie', href: '#' },
+  { Icon: MapPin, label: t('contact.info.address'), value: 'Pépinière Mahdia Hiboun, 5111, B3, Tunisie', href: 'https://maps.google.com/?q=Pépinière+Mahdia+Hiboun+Tunisie' },
 ]
 
 export default function Contact() {
