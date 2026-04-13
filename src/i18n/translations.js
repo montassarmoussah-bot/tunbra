@@ -24,7 +24,7 @@ export const translations = {
       cta: 'Contact Us',
     },
     hero: {
-      badge: 'Made in Tunisia',
+      badge: { beforeFlag: 'Made in', afterFlag: 'Tunisia', withLove: 'with love' },
       title: 'Accessible Technology for Everyone',
       highlight: 'Braille Innovation',
       subtitle: 'Empowering visually impaired individuals across Africa with affordable, high-quality Braille solutions.',
@@ -181,7 +181,7 @@ export const translations = {
       cta: 'Nous contacter',
     },
     hero: {
-      badge: 'Fabriqué en Tunisie',
+      badge: { beforeFlag: 'Fabriqué en', afterFlag: 'Tunisie', withLove: 'avec amour' },
       title: 'Technologie Accessible pour Tous',
       highlight: 'Innovation Braille',
       subtitle: 'Autonomiser les personnes malvoyantes à travers l\'Afrique avec des solutions Braille abordables et de haute qualité.',
@@ -338,7 +338,7 @@ export const translations = {
       cta: 'تواصل معنا',
     },
     hero: {
-      badge: 'صنع في تونس',
+      badge: { beforeFlag: 'صنع في', afterFlag: 'تونس', withLove: 'بحب' },
       title: 'تكنولوجيا متاحة للجميع',
       highlight: 'ابتكار برايل',
       subtitle: 'تمكين الأشخاص ضعاف البصر في جميع أنحاء أفريقيا بحلول برايل ميسورة التكلفة وعالية الجودة.',

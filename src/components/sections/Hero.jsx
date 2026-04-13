@@ -57,11 +57,12 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
             >
-              <div className="hero__badge">
-                Made in
-                <img src="/flag.webp" alt="Tunisia flag" className="hero__badge-flag" />
-                Tunisia with love
-                <img src="/heart.png" alt="heart" className="hero__badge-heart" />
+              <div className="hero__badge" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                <span>{t('hero.badge.beforeFlag')}</span>
+                <img src="/flag.webp" alt="" className="hero__badge-flag" style={{ width: '22px', height: '16px', objectFit: 'cover', borderRadius: '2px' }} />
+                <span>{t('hero.badge.afterFlag')}</span>
+                <span style={{ opacity: 0.9 }}>{t('hero.badge.withLove')}</span>
+                <img src="/heart.png" alt="" className="hero__badge-heart" style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
               </div>
             </motion.div>
 
