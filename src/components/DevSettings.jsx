@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
 
 const DEFAULTS = {
-  logoH:        52,   // logo image height px
-  logoPadV:     6,    // container vertical padding px
-  logoPadH:     16,   // container horizontal padding px
-  logoRadius:   10,   // container border-radius px
-  logoShadow:   18,   // container box-shadow spread px
-  heroExtra:    80,   // extra px above badge (added to 72px nav height)
+  logoH:        45,   // logo image height px
+  logoPadV:     0,    // container vertical padding px
+  logoPadH:     14,   // container horizontal padding px
+  logoRadius:   22,   // container border-radius px
+  heroExtra:    17,   // extra px above badge (added to 72px nav height)
 }
 
 function apply(vals) {
@@ -15,17 +14,15 @@ function apply(vals) {
   r.setProperty('--ds-logo-pad-v',   vals.logoPadV    + 'px')
   r.setProperty('--ds-logo-pad-h',   vals.logoPadH    + 'px')
   r.setProperty('--ds-logo-radius',  vals.logoRadius  + 'px')
-  r.setProperty('--ds-logo-shadow',  vals.logoShadow  + 'px')
   r.setProperty('--ds-hero-extra',   vals.heroExtra   + 'px')
 }
 
 const sliders = [
-  { key: 'logoH',      label: 'Logo height',          min: 24,  max: 90,  unit: 'px' },
-  { key: 'logoPadV',   label: 'Container pad top/bot',min: 0,   max: 24,  unit: 'px' },
-  { key: 'logoPadH',   label: 'Container pad left/right', min: 4, max: 40, unit: 'px' },
-  { key: 'logoRadius', label: 'Container radius',     min: 0,   max: 32,  unit: 'px' },
-  { key: 'logoShadow', label: 'Container shadow',     min: 0,   max: 48,  unit: 'px' },
-  { key: 'heroExtra',  label: 'Space below nav',      min: 16,  max: 240, unit: 'px' },
+  { key: 'logoH',      label: 'Logo height',              min: 10,  max: 200, unit: 'px' },
+  { key: 'logoPadV',   label: 'Container pad top/bot',    min: 0,   max: 60,  unit: 'px' },
+  { key: 'logoPadH',   label: 'Container pad left/right', min: 0,   max: 80,  unit: 'px' },
+  { key: 'logoRadius', label: 'Container radius',         min: 0,   max: 80,  unit: 'px' },
+  { key: 'heroExtra',  label: 'Space below nav',          min: 0,   max: 400, unit: 'px' },
 ]
 
 export default function DevSettings() {

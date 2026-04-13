@@ -34,7 +34,7 @@ export default function Hero() {
         <div className="hero__inner">
 
           {/* ── Text ── */}
-          <div>
+          <div style={{ order: 1 }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1 }}
             >
-              Rendre l'<span className="hl">accessibilité</span> possible grâce à l'innovation Braille
+              L'<span className="hl">accessibilité</span> Braille, réinventée.
             </motion.h1>
 
             <motion.p
@@ -62,8 +62,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.18 }}
             >
-              Imprimantes Braille de nouvelle génération et solutions d'accessibilité
-              pour les écoles, institutions et entreprises à travers l'Afrique et au-delà.
+              Imprimantes Braille intelligentes pour les écoles, institutions et entreprises — fabriquées en Tunisie.
             </motion.p>
 
             <motion.div
@@ -98,35 +97,33 @@ export default function Hero() {
           {/* ── Video ── */}
           <motion.div
             className="hero__visual"
+            style={{ order: 2 }}
             initial={{ opacity: 0, scale: 0.88, y: 20 }}
             animate={{ opacity: 1, scale: 1,    y: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className="hero__video-wrap">
-              <video
-                src="/video.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="hero__video"
-              />
-              {/* Subtle border glow overlay */}
-              <div className="hero__video-glow" aria-hidden />
-            </div>
+            {/* Decorative frame */}
+            <div className="hero__frame">
+              {/* Corner brackets */}
+              <span className="hero__corner hero__corner--tl" aria-hidden />
+              <span className="hero__corner hero__corner--tr" aria-hidden />
+              <span className="hero__corner hero__corner--bl" aria-hidden />
+              <span className="hero__corner hero__corner--br" aria-hidden />
 
-            {/* Floating accent badges */}
-            <div className="hero__float hero__float--1">
-              <svg viewBox="0 0 40 40" style={{ width: 36 }}>
-                <circle cx="10" cy="10" r="3" fill="white" />
-                <circle cx="10" cy="20" r="3" fill="white" />
-                <circle cx="10" cy="30" r="3" fill="white" />
-                <circle cx="20" cy="10" r="3" fill="white" />
-                <circle cx="20" cy="20" r="3" fill="white" />
-                <circle cx="30" cy="10" r="3" fill="white" />
-              </svg>
+              <div className="hero__video-wrap">
+                {/* Animated scan line */}
+                <div className="hero__scan" aria-hidden />
+                <video
+                  src="/video.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="hero__video"
+                />
+                <div className="hero__video-glow" aria-hidden />
+              </div>
             </div>
-            <div className="hero__float hero__float--2">A+</div>
           </motion.div>
 
         </div>

@@ -42,7 +42,7 @@ export default function Navigation() {
             <a href="#" className="nav__logo" onClick={e => go(e, '#')}>
               <div className="nav__logo-img-wrap">
                 <img
-                  src="/logo_TunBra_png.png"
+                  src="/whitelogo.png"
                   alt="TunBra logo"
                   className="nav__logo-img"
                 />

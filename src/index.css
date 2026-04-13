@@ -300,7 +300,7 @@ section { padding-block: var(--sec-py); }
   display: grid;
   gap: 3rem;
   align-items: center;
-  padding-block: calc(72px + 17px) 4rem;
+  padding-block: 72px 4rem;
 }
 
 .hero__badge {
@@ -395,7 +395,7 @@ section { padding-block: var(--sec-py); }
   background: rgba(255,255,255,.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,.2);
-  font-size: 1.125rem; font-weight: 800; color: #fff;
+  font-size: 1.125rem; font-weight: 800; color: #000;
   animation: float 5s ease-in-out infinite reverse;
 }
 
@@ -420,7 +420,8 @@ section { padding-block: var(--sec-py); }
 
 @media (min-width: 1024px) {
   .hero__inner  { grid-template-columns: 1fr 1fr; }
-  .hero__visual { display: block; position: relative; }
+  .hero__visual { display: block; position: relative; order: 2 !important; }
+  .hero__inner > div { order: 1 !important; }
 }
 
 /* ── About ──────────────────────────────────────────────────── */
@@ -1021,17 +1022,16 @@ section { padding-block: var(--sec-py); }
 
 /* ── Nav Logo Image ─────────────────────────────────────────── */
 .nav__logo-img-wrap {
-  background: #fff;
-  border-radius: 22px;
-  padding: 0 14px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 19px rgba(0,0,0,.18);
-  transition: box-shadow var(--t), transform var(--t);
+  transition: transform var(--t);
 }
-.nav__logo-img-wrap:hover { box-shadow: 0 4px 20px rgba(0,0,0,.25); transform: translateY(-1px); }
+.nav__logo-img-wrap:hover { transform: translateY(-1px); }
 .nav__logo-img {
-  height: 45px;
+  height: 163px;
   width: auto;
   display: block;
 }
@@ -1460,17 +1460,44 @@ section { position: relative; }
   100% { background-position: -100% 0; }
 }
 
-/* ── Hero Video ─────────────────────────────────────────────── */
+/* ── Hero Video Frame ───────────────────────────────────────── */
+
+/* Outer decorative frame */
+.hero__frame {
+  position: relative;
+  padding: 14px;
+  border-radius: calc(var(--r-xl) + 10px);
+  background: linear-gradient(135deg,
+    rgba(255,255,255,.07) 0%,
+    rgba(255,255,255,.02) 100%);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 0 0 1px rgba(61,84,234,.18),
+    0 40px 90px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+/* Animated corner brackets */
+.hero__corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero__corner--tl { top: 6px;  left: 6px;  border-top: 2px solid var(--accent-light); border-left:  2px solid var(--accent-light); border-radius: 4px 0 0 0; }
+.hero__corner--tr { top: 6px;  right: 6px; border-top: 2px solid var(--accent-light); border-right: 2px solid var(--accent-light); border-radius: 0 4px 0 0; }
+.hero__corner--bl { bottom: 6px; left: 6px;  border-bottom: 2px solid var(--primary-light); border-left:  2px solid var(--primary-light); border-radius: 0 0 0 4px; }
+.hero__corner--br { bottom: 6px; right: 6px; border-bottom: 2px solid var(--primary-light); border-right: 2px solid var(--primary-light); border-radius: 0 0 4px 0; }
+
+/* Inner video card */
 .hero__video-wrap {
   position: relative;
   width: 100%;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background: rgba(255,255,255,.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 32px 80px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.06);
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
 }
 .hero__video {
   display: block;
@@ -1479,14 +1506,39 @@ section { position: relative; }
   object-fit: cover;
   border-radius: var(--r-xl);
 }
+
+/* Animated scan line */
+.hero__scan {
+  position: absolute;
+  inset-inline: 0;
+  top: -4px;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--accent-light) 40%,
+    rgba(255,255,255,.9) 50%,
+    var(--accent-light) 60%,
+    transparent 100%);
+  border-radius: var(--r-pill);
+  animation: scanLine 3.5s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+@keyframes scanLine {
+  0%   { top: -4px; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
 .hero__video-glow {
   position: absolute;
   inset: 0;
   border-radius: var(--r-xl);
   background: linear-gradient(135deg,
-    rgba(61,84,234,.08) 0%,
+    rgba(61,84,234,.06) 0%,
     transparent 50%,
-    rgba(4,184,224,.08) 100%);
+    rgba(4,184,224,.06) 100%);
   pointer-events: none;
 }
 
