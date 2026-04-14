@@ -41,9 +41,9 @@ export default function FooterV4() {
             
             {/* Contact Links */}
             <div className="footer-contact" style={s.contact}>
-              <a href="mailto:contact@tunbra.com" style={s.contactItem}>
+              <a href="mailto:tunbra.info@gmail.com" style={s.contactItem}>
                 <Mail size={14} />
-                <span>contact@tunbra.com</span>
+                <span>tunbra.info@gmail.com</span>
               </a>
               <a href="tel:+21624909710" style={s.contactItem}>
                 <Phone size={14} />
@@ -70,7 +70,7 @@ export default function FooterV4() {
               <a href="tel:+21624909710" style={s.socialIcon} aria-label="Phone">
                 <Phone size={16} />
               </a>
-              <a href="mailto:contact@tunbra.com" style={s.socialIcon} aria-label="Email">
+              <a href="mailto:tunbra.info@gmail.com" style={s.socialIcon} aria-label="Email">
                 <Mail size={16} />
               </a>
             </div>
