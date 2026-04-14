@@ -40,20 +40,16 @@ export default function Contact() {
         read: false
       })
 
-      // Send email via Web3Forms
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-          subject: `New TunBraille Contact: ${form.interest}`,
-          from_name: form.name,
-          email: form.email,
-          organization: form.org,
-          interest: form.interest,
-          message: form.message,
-        }),
-      })
+      // Send email via Web3Forms (public key - safe to expose)
+      const formData = new FormData()
+      formData.append('access_key', '82f7d534-595f-44ba-8e19-95909a8a92b3')
+      formData.append('subject', `New TunBraille Contact: ${form.interest}`)
+      formData.append('name', form.name)
+      formData.append('email', form.email)
+      formData.append('organization', form.org)
+      formData.append('interest', form.interest)
+      formData.append('message', form.message)
+      await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
 
       setSent(true)
       setForm({ name: '', email: '', org: '', interest: '', message: '' })
