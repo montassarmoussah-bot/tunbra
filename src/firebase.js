@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore }  from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey:            "AIzaSyDXURq-SEtBLRUuZP_Qmka22WE6kDXlcms",
-  authDomain:        "tunbra-af4fa.firebaseapp.com",
-  projectId:         "tunbra-af4fa",
-  storageBucket:     "tunbra-af4fa.firebasestorage.app",
-  messagingSenderId: "895997639518",
-  appId:             "1:895997639518:web:5afd10b7e9cabf85aa2dcf",
+  apiKey:            import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain:        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId:         import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket:     import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId:             import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig)
