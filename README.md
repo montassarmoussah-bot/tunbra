@@ -33,6 +33,7 @@ Go to **Netlify Dashboard > Site settings > Environment variables** and add the 
 | `VITE_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket (e.g. `your-project.firebasestorage.app`) |
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID |
 | `VITE_FIREBASE_APP_ID` | Firebase app ID |
+| `VITE_WEB3FORMS_KEY` | Web3Forms access key (for contact form emails) |
 
 You can find all these values in the [Firebase Console](https://console.firebase.google.com/) under **Project Settings > General > Your apps > Web app**.
 

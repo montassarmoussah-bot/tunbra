@@ -29,6 +29,7 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
+      // Save to Firebase for admin dashboard
       await addDoc(collection(db, 'messages'), {
         name: form.name,
         email: form.email,
@@ -38,6 +39,22 @@ export default function Contact() {
         timestamp: serverTimestamp(),
         read: false
       })
+
+      // Send email via Web3Forms
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: `New TunBraille Contact: ${form.interest}`,
+          from_name: form.name,
+          email: form.email,
+          organization: form.org,
+          interest: form.interest,
+          message: form.message,
+        }),
+      })
+
       setSent(true)
       setForm({ name: '', email: '', org: '', interest: '', message: '' })
       setTimeout(() => setSent(false), 6000)
