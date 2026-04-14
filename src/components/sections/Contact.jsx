@@ -42,7 +42,7 @@ export default function Contact() {
 
       // Send email via Web3Forms (public key - safe to expose)
       const formData = new FormData()
-      formData.append('access_key', '82f7d534-595f-44ba-8e19-95909a8a92b3')
+      formData.append('access_key', 'a622fe6c-8c33-4e82-97a9-e978544c24d5')
       formData.append('subject', `New TunBraille Contact: ${form.interest}`)
       formData.append('name', form.name)
       formData.append('email', form.email)
