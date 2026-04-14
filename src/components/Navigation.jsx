@@ -69,7 +69,7 @@ export default function Navigation() {
             </div>
 
             {/* Language + CTA */}
-            <div className="nav__cta" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div className="nav__cta" style={{ alignItems: 'center', gap: '12px' }}>
               <LanguageSelector />
               <a
                 href="#contact"

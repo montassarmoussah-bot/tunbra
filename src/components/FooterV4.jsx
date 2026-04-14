@@ -25,8 +25,8 @@ export default function FooterV4() {
     <footer style={s.footer}>
       <div style={s.container}>
         {/* Main Grid: Logo | Contact + Socials */}
-        <div style={s.grid}>
-          
+        <div className="footer-grid" style={s.grid}>
+
           {/* Left Column - Big Logo */}
           <div style={s.logoCol}>
             <a href="#" onClick={scroll} style={s.logoLink}>
@@ -35,12 +35,12 @@ export default function FooterV4() {
           </div>
 
           {/* Right Column - Contact & Socials */}
-          <div style={s.rightCol}>
+          <div className="footer-right" style={s.rightCol}>
             {/* Description */}
             <p style={s.description}>{t('footer.brand')}</p>
             
             {/* Contact Links */}
-            <div style={s.contact}>
+            <div className="footer-contact" style={s.contact}>
               <a href="mailto:contact@tunbra.com" style={s.contactItem}>
                 <Mail size={14} />
                 <span>contact@tunbra.com</span>
